@@ -22,7 +22,7 @@ wwv_flow_api.create_page(
 ,p_page_template_options=>'#DEFAULT#'
 ,p_protection_level=>'C'
 ,p_last_updated_by=>'A00354851@TEC.MX'
-,p_last_upd_yyyymmddhh24miss=>'20220527012115'
+,p_last_upd_yyyymmddhh24miss=>'20220607034238'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(8080486739866044)
@@ -463,13 +463,13 @@ wwv_flow_api.create_worksheet_rpt(
 ,p_report_columns=>'CREATED:DEVICE_ID:DEVICE_NAME:HUMIDITY:TEMPERATURE:TOLUENE:'
 );
 wwv_flow_api.create_worksheet_condition(
- p_id=>wwv_flow_api.id(9593042464798485)
+ p_id=>wwv_flow_api.id(9705067506069796)
 ,p_report_id=>wwv_flow_api.id(9490591046133458)
 ,p_condition_type=>'HIGHLIGHT'
 ,p_allow_delete=>'Y'
 ,p_column_name=>'TOLUENE'
 ,p_operator=>'>'
-,p_expr=>'50000'
+,p_expr=>'5000'
 ,p_condition_sql=>' (case when ("TOLUENE" > to_number(#APXWS_EXPR#)) then #APXWS_HL_ID# end) '
 ,p_condition_display=>'#APXWS_COL_NAME# > #APXWS_EXPR_NUMBER#  '
 ,p_enabled=>'Y'
@@ -477,17 +477,18 @@ wwv_flow_api.create_worksheet_condition(
 ,p_row_bg_color=>'#ffd6d2'
 );
 wwv_flow_api.create_worksheet_condition(
- p_id=>wwv_flow_api.id(9593448693798485)
+ p_id=>wwv_flow_api.id(9705474347069796)
 ,p_report_id=>wwv_flow_api.id(9490591046133458)
 ,p_condition_type=>'HIGHLIGHT'
 ,p_allow_delete=>'Y'
 ,p_column_name=>'TOLUENE'
-,p_operator=>'>'
+,p_operator=>'between'
 ,p_expr=>'3000'
-,p_condition_sql=>' (case when ("TOLUENE" > to_number(#APXWS_EXPR#)) then #APXWS_HL_ID# end) '
-,p_condition_display=>'#APXWS_COL_NAME# > #APXWS_EXPR_NUMBER#  '
+,p_expr2=>'99999'
+,p_condition_sql=>' (case when ("TOLUENE" between to_number(#APXWS_EXPR#) and to_number(#APXWS_EXPR2#)) then #APXWS_HL_ID# end) '
+,p_condition_display=>'#APXWS_COL_NAME# #APXWS_OP_NAME# #APXWS_EXPR_NUMBER# #APXWS_AND# #APXWS_EXPR2_NUMBER#'
 ,p_enabled=>'Y'
-,p_highlight_sequence=>10
+,p_highlight_sequence=>20
 ,p_row_bg_color=>'#fff5ce'
 );
 wwv_flow_api.create_page_plug(
