@@ -1,0 +1,812 @@
+prompt --application/pages/page_00001
+begin
+--   Manifest
+--     PAGE: 00001
+--   Manifest End
+wwv_flow_api.component_begin (
+ p_version_yyyy_mm_dd=>'2021.10.15'
+,p_release=>'21.2.6'
+,p_default_workspace_id=>7864481463549393
+,p_default_application_id=>102
+,p_default_id_offset=>0
+,p_default_owner=>'IOT'
+);
+wwv_flow_api.create_page(
+ p_id=>1
+,p_user_interface_id=>wwv_flow_api.id(8069507814865894)
+,p_name=>'Dashboard'
+,p_alias=>'HOME'
+,p_step_title=>'T-AirSentinel'
+,p_autocomplete_on_off=>'OFF'
+,p_javascript_code=>'//setTimeout("location.reload(true);", 3000);'
+,p_page_template_options=>'#DEFAULT#'
+,p_protection_level=>'C'
+,p_last_updated_by=>'A00354851@TEC.MX'
+,p_last_upd_yyyymmddhh24miss=>'20220527012115'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(8080486739866044)
+,p_plug_name=>'Temperatura'
+,p_region_name=>'line_chart'
+,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(7972238683865800)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'Y'
+,p_plug_source_type=>'NATIVE_JET_CHART'
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+);
+wwv_flow_api.create_jet_chart(
+ p_id=>wwv_flow_api.id(8080817149866045)
+,p_region_id=>wwv_flow_api.id(8080486739866044)
+,p_chart_type=>'line'
+,p_height=>'400'
+,p_animation_on_display=>'auto'
+,p_animation_on_data_change=>'auto'
+,p_orientation=>'vertical'
+,p_data_cursor=>'on'
+,p_data_cursor_behavior=>'smooth'
+,p_hide_and_show_behavior=>'none'
+,p_hover_behavior=>'dim'
+,p_stack=>'off'
+,p_connect_nulls=>'Y'
+,p_sorting=>'label-asc'
+,p_fill_multi_series_gaps=>true
+,p_zoom_and_scroll=>'delayed'
+,p_initial_zooming=>'first'
+,p_tooltip_rendered=>'Y'
+,p_show_series_name=>false
+,p_show_group_name=>true
+,p_show_value=>true
+,p_legend_rendered=>'on'
+,p_legend_position=>'auto'
+,p_overview_rendered=>'off'
+,p_time_axis_type=>'auto'
+);
+wwv_flow_api.create_jet_chart_series(
+ p_id=>wwv_flow_api.id(8082557763866046)
+,p_chart_id=>wwv_flow_api.id(8080817149866045)
+,p_seq=>10
+,p_name=>'Temp'
+,p_data_source_type=>'SQL'
+,p_data_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select ',
+'       created label, ',
+'       temperature value',
+'from vocs',
+'where device_id = :P1_DEVICE_ID',
+'order by created asc'))
+,p_max_row_count=>20
+,p_items_value_column_name=>'VALUE'
+,p_items_label_column_name=>'LABEL'
+,p_line_style=>'solid'
+,p_line_type=>'auto'
+,p_marker_rendered=>'off'
+,p_assigned_to_y2=>'off'
+,p_items_label_rendered=>false
+);
+wwv_flow_api.create_jet_chart_axis(
+ p_id=>wwv_flow_api.id(8081347528866045)
+,p_chart_id=>wwv_flow_api.id(8080817149866045)
+,p_axis=>'x'
+,p_is_rendered=>'on'
+,p_title=>'Fecha'
+,p_format_type=>'datetime-short'
+,p_format_scaling=>'auto'
+,p_scaling=>'linear'
+,p_baseline_scaling=>'zero'
+,p_major_tick_rendered=>'on'
+,p_minor_tick_rendered=>'on'
+,p_tick_label_rendered=>'on'
+,p_tick_label_rotation=>'auto'
+,p_tick_label_position=>'outside'
+);
+wwv_flow_api.create_jet_chart_axis(
+ p_id=>wwv_flow_api.id(8081932583866046)
+,p_chart_id=>wwv_flow_api.id(8080817149866045)
+,p_axis=>'y'
+,p_is_rendered=>'on'
+,p_title=>'Celcius '
+,p_format_type=>'decimal'
+,p_format_scaling=>'none'
+,p_scaling=>'linear'
+,p_baseline_scaling=>'zero'
+,p_position=>'auto'
+,p_major_tick_rendered=>'on'
+,p_minor_tick_rendered=>'on'
+,p_tick_label_rendered=>'on'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(8083149806866047)
+,p_plug_name=>'Humedad'
+,p_region_name=>'hum_chart'
+,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(7972238683865800)
+,p_plug_display_sequence=>20
+,p_plug_new_grid_row=>false
+,p_plug_source_type=>'NATIVE_JET_CHART'
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+);
+wwv_flow_api.create_jet_chart(
+ p_id=>wwv_flow_api.id(8083597299866047)
+,p_region_id=>wwv_flow_api.id(8083149806866047)
+,p_chart_type=>'line'
+,p_height=>'400'
+,p_animation_on_display=>'auto'
+,p_animation_on_data_change=>'auto'
+,p_orientation=>'vertical'
+,p_data_cursor=>'on'
+,p_data_cursor_behavior=>'smooth'
+,p_hide_and_show_behavior=>'none'
+,p_hover_behavior=>'dim'
+,p_stack=>'off'
+,p_connect_nulls=>'Y'
+,p_sorting=>'label-asc'
+,p_fill_multi_series_gaps=>true
+,p_zoom_and_scroll=>'delayed'
+,p_initial_zooming=>'first'
+,p_tooltip_rendered=>'Y'
+,p_show_series_name=>false
+,p_show_group_name=>true
+,p_show_value=>true
+,p_legend_rendered=>'on'
+,p_legend_position=>'auto'
+,p_overview_rendered=>'off'
+,p_time_axis_type=>'auto'
+);
+wwv_flow_api.create_jet_chart_series(
+ p_id=>wwv_flow_api.id(8085239428866048)
+,p_chart_id=>wwv_flow_api.id(8083597299866047)
+,p_seq=>10
+,p_name=>'Hum'
+,p_data_source_type=>'SQL'
+,p_data_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select ',
+'       created label, ',
+'       humidity value',
+'from vocs',
+'where device_id = :P1_DEVICE_ID',
+'order by created asc'))
+,p_max_row_count=>20
+,p_items_value_column_name=>'VALUE'
+,p_items_label_column_name=>'LABEL'
+,p_line_style=>'solid'
+,p_line_type=>'auto'
+,p_marker_rendered=>'off'
+,p_assigned_to_y2=>'off'
+,p_items_label_rendered=>false
+);
+wwv_flow_api.create_jet_chart_axis(
+ p_id=>wwv_flow_api.id(8084053838866047)
+,p_chart_id=>wwv_flow_api.id(8083597299866047)
+,p_axis=>'x'
+,p_is_rendered=>'on'
+,p_title=>'Fecha'
+,p_format_type=>'datetime-short'
+,p_format_scaling=>'auto'
+,p_scaling=>'linear'
+,p_baseline_scaling=>'zero'
+,p_major_tick_rendered=>'on'
+,p_minor_tick_rendered=>'on'
+,p_tick_label_rendered=>'on'
+,p_tick_label_rotation=>'auto'
+,p_tick_label_position=>'outside'
+);
+wwv_flow_api.create_jet_chart_axis(
+ p_id=>wwv_flow_api.id(8084620942866048)
+,p_chart_id=>wwv_flow_api.id(8083597299866047)
+,p_axis=>'y'
+,p_is_rendered=>'on'
+,p_title=>'Hum %'
+,p_format_type=>'decimal'
+,p_format_scaling=>'none'
+,p_scaling=>'linear'
+,p_baseline_scaling=>'zero'
+,p_position=>'auto'
+,p_major_tick_rendered=>'on'
+,p_minor_tick_rendered=>'on'
+,p_tick_label_rendered=>'on'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(8085882090866048)
+,p_plug_name=>'Tolueno'
+,p_region_name=>'tol_chart'
+,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(7972238683865800)
+,p_plug_display_sequence=>40
+,p_include_in_reg_disp_sel_yn=>'Y'
+,p_plug_source_type=>'NATIVE_JET_CHART'
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+);
+wwv_flow_api.create_jet_chart(
+ p_id=>wwv_flow_api.id(8086283615866048)
+,p_region_id=>wwv_flow_api.id(8085882090866048)
+,p_chart_type=>'line'
+,p_animation_on_display=>'auto'
+,p_animation_on_data_change=>'auto'
+,p_orientation=>'vertical'
+,p_data_cursor=>'on'
+,p_data_cursor_behavior=>'smooth'
+,p_hide_and_show_behavior=>'none'
+,p_hover_behavior=>'dim'
+,p_stack=>'off'
+,p_connect_nulls=>'Y'
+,p_sorting=>'label-asc'
+,p_fill_multi_series_gaps=>true
+,p_zoom_and_scroll=>'delayed'
+,p_initial_zooming=>'first'
+,p_tooltip_rendered=>'Y'
+,p_show_series_name=>false
+,p_show_group_name=>true
+,p_show_value=>true
+,p_legend_rendered=>'on'
+,p_legend_position=>'auto'
+,p_overview_rendered=>'off'
+,p_time_axis_type=>'auto'
+);
+wwv_flow_api.create_jet_chart_series(
+ p_id=>wwv_flow_api.id(8087942313866049)
+,p_chart_id=>wwv_flow_api.id(8086283615866048)
+,p_seq=>10
+,p_name=>'Tolueno'
+,p_data_source_type=>'SQL'
+,p_data_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select ',
+'       created label, ',
+'       toluene value',
+'from vocs',
+'where device_id = :P1_DEVICE_ID',
+'order by created asc'))
+,p_max_row_count=>20
+,p_items_value_column_name=>'VALUE'
+,p_items_label_column_name=>'LABEL'
+,p_line_style=>'solid'
+,p_line_type=>'auto'
+,p_marker_rendered=>'off'
+,p_assigned_to_y2=>'off'
+,p_items_label_rendered=>false
+);
+wwv_flow_api.create_jet_chart_axis(
+ p_id=>wwv_flow_api.id(8086785972866049)
+,p_chart_id=>wwv_flow_api.id(8086283615866048)
+,p_axis=>'x'
+,p_is_rendered=>'on'
+,p_title=>'Fecha'
+,p_format_type=>'datetime-short'
+,p_format_scaling=>'auto'
+,p_scaling=>'linear'
+,p_baseline_scaling=>'zero'
+,p_major_tick_rendered=>'on'
+,p_minor_tick_rendered=>'on'
+,p_tick_label_rendered=>'on'
+,p_tick_label_rotation=>'auto'
+,p_tick_label_position=>'outside'
+);
+wwv_flow_api.create_jet_chart_axis(
+ p_id=>wwv_flow_api.id(8087336560866049)
+,p_chart_id=>wwv_flow_api.id(8086283615866048)
+,p_axis=>'y'
+,p_is_rendered=>'on'
+,p_title=>'ppm'
+,p_format_type=>'decimal'
+,p_format_scaling=>'none'
+,p_scaling=>'linear'
+,p_baseline_scaling=>'zero'
+,p_position=>'auto'
+,p_major_tick_rendered=>'on'
+,p_minor_tick_rendered=>'on'
+,p_tick_label_rendered=>'on'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(8090224919866051)
+,p_plug_name=>'T-AirSentinel'
+,p_icon_css_classes=>'app-icon'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(7950141157865789)
+,p_plug_display_sequence=>10
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_plug_query_num_rows=>15
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_attribute_01=>'N'
+,p_attribute_02=>'HTML'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(8144268192910231)
+,p_plug_name=>'Report Tabs'
+,p_region_template_options=>'#DEFAULT#:t-TabsRegion-mod--simple'
+,p_plug_template=>wwv_flow_api.id(7981714675865806)
+,p_plug_display_sequence=>50
+,p_include_in_reg_disp_sel_yn=>'Y'
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_attribute_01=>'N'
+,p_attribute_02=>'HTML'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(8141641242910205)
+,p_plug_name=>'Metrics Report'
+,p_parent_plug_id=>wwv_flow_api.id(8144268192910231)
+,p_region_template_options=>'#DEFAULT#'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(7967954300865799)
+,p_plug_display_sequence=>10
+,p_plug_display_point=>'SUB_REGIONS'
+,p_query_type=>'TABLE'
+,p_query_table=>'VOCS'
+,p_query_where=>'device_id = :P1_DEVICE_ID'
+,p_query_order_by=>'CREATED DESC'
+,p_include_rowid_column=>false
+,p_plug_source_type=>'NATIVE_IR'
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_prn_content_disposition=>'ATTACHMENT'
+,p_prn_units=>'MILLIMETERS'
+,p_prn_paper_size=>'A4'
+,p_prn_width=>297
+,p_prn_height=>210
+,p_prn_orientation=>'HORIZONTAL'
+,p_prn_page_header=>'Metrics Report'
+,p_prn_page_header_font_color=>'#000000'
+,p_prn_page_header_font_family=>'Helvetica'
+,p_prn_page_header_font_weight=>'normal'
+,p_prn_page_header_font_size=>'12'
+,p_prn_page_footer_font_color=>'#000000'
+,p_prn_page_footer_font_family=>'Helvetica'
+,p_prn_page_footer_font_weight=>'normal'
+,p_prn_page_footer_font_size=>'12'
+,p_prn_header_bg_color=>'#EEEEEE'
+,p_prn_header_font_color=>'#000000'
+,p_prn_header_font_family=>'Helvetica'
+,p_prn_header_font_weight=>'bold'
+,p_prn_header_font_size=>'10'
+,p_prn_body_bg_color=>'#FFFFFF'
+,p_prn_body_font_color=>'#000000'
+,p_prn_body_font_family=>'Helvetica'
+,p_prn_body_font_weight=>'normal'
+,p_prn_body_font_size=>'10'
+,p_prn_border_width=>.5
+,p_prn_page_header_alignment=>'CENTER'
+,p_prn_page_footer_alignment=>'CENTER'
+,p_prn_border_color=>'#666666'
+);
+wwv_flow_api.create_worksheet(
+ p_id=>wwv_flow_api.id(8141701063910206)
+,p_max_row_count=>'1000000'
+,p_no_data_found_message=>'no metrics found'
+,p_pagination_type=>'ROWS_X_TO_Y'
+,p_pagination_display_pos=>'BOTTOM_RIGHT'
+,p_show_display_row_count=>'Y'
+,p_report_list_mode=>'TABS'
+,p_lazy_loading=>false
+,p_show_detail_link=>'N'
+,p_show_notify=>'Y'
+,p_download_formats=>'CSV:HTML:XLSX:PDF'
+,p_enable_mail_download=>'Y'
+,p_owner=>'A00354851@TEC.MX'
+,p_internal_uid=>8141701063910206
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(8141822143910207)
+,p_db_column_name=>'ID'
+,p_display_order=>10
+,p_column_identifier=>'A'
+,p_column_label=>'Id'
+,p_column_type=>'NUMBER'
+,p_column_alignment=>'RIGHT'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(8141960272910208)
+,p_db_column_name=>'DEVICE_ID'
+,p_display_order=>20
+,p_column_identifier=>'B'
+,p_column_label=>'Device ID'
+,p_column_type=>'STRING'
+,p_column_alignment=>'CENTER'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(8142009960910209)
+,p_db_column_name=>'DEVICE_NAME'
+,p_display_order=>30
+,p_column_identifier=>'C'
+,p_column_label=>'Device Name'
+,p_column_type=>'STRING'
+,p_column_alignment=>'CENTER'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(8142803770910217)
+,p_db_column_name=>'TEMPERATURE'
+,p_display_order=>40
+,p_column_identifier=>'G'
+,p_column_label=>'Temperature'
+,p_column_html_expression=>unistr('#TEMPERATURE# \00B0C')
+,p_column_type=>'NUMBER'
+,p_column_alignment=>'RIGHT'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(8142971230910218)
+,p_db_column_name=>'HUMIDITY'
+,p_display_order=>50
+,p_column_identifier=>'H'
+,p_column_label=>'Humidity'
+,p_column_html_expression=>'#HUMIDITY# %'
+,p_column_type=>'NUMBER'
+,p_column_alignment=>'RIGHT'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(8143083466910219)
+,p_db_column_name=>'TOLUENE'
+,p_display_order=>60
+,p_column_identifier=>'I'
+,p_column_label=>'Toluene'
+,p_column_html_expression=>'#TOLUENE# ppm'
+,p_column_type=>'NUMBER'
+,p_column_alignment=>'RIGHT'
+,p_format_mask=>'999G999G999G999G999G999G990'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(8143108384910220)
+,p_db_column_name=>'CREATED'
+,p_display_order=>70
+,p_column_identifier=>'J'
+,p_column_label=>'Created'
+,p_column_type=>'DATE'
+,p_column_alignment=>'CENTER'
+,p_format_mask=>'DD-MON-YYYY HH24:MI:SS'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_rpt(
+ p_id=>wwv_flow_api.id(9490591046133458)
+,p_application_user=>'APXWS_DEFAULT'
+,p_report_seq=>10
+,p_report_alias=>'94906'
+,p_status=>'PUBLIC'
+,p_is_default=>'Y'
+,p_display_rows=>100000
+,p_report_columns=>'CREATED:DEVICE_ID:DEVICE_NAME:HUMIDITY:TEMPERATURE:TOLUENE:'
+);
+wwv_flow_api.create_worksheet_condition(
+ p_id=>wwv_flow_api.id(9593042464798485)
+,p_report_id=>wwv_flow_api.id(9490591046133458)
+,p_condition_type=>'HIGHLIGHT'
+,p_allow_delete=>'Y'
+,p_column_name=>'TOLUENE'
+,p_operator=>'>'
+,p_expr=>'50000'
+,p_condition_sql=>' (case when ("TOLUENE" > to_number(#APXWS_EXPR#)) then #APXWS_HL_ID# end) '
+,p_condition_display=>'#APXWS_COL_NAME# > #APXWS_EXPR_NUMBER#  '
+,p_enabled=>'Y'
+,p_highlight_sequence=>10
+,p_row_bg_color=>'#ffd6d2'
+);
+wwv_flow_api.create_worksheet_condition(
+ p_id=>wwv_flow_api.id(9593448693798485)
+,p_report_id=>wwv_flow_api.id(9490591046133458)
+,p_condition_type=>'HIGHLIGHT'
+,p_allow_delete=>'Y'
+,p_column_name=>'TOLUENE'
+,p_operator=>'>'
+,p_expr=>'3000'
+,p_condition_sql=>' (case when ("TOLUENE" > to_number(#APXWS_EXPR#)) then #APXWS_HL_ID# end) '
+,p_condition_display=>'#APXWS_COL_NAME# > #APXWS_EXPR_NUMBER#  '
+,p_enabled=>'Y'
+,p_highlight_sequence=>10
+,p_row_bg_color=>'#fff5ce'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(8144426615910233)
+,p_plug_name=>'Incidents Report'
+,p_parent_plug_id=>wwv_flow_api.id(8144268192910231)
+,p_region_template_options=>'#DEFAULT#'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(7967954300865799)
+,p_plug_display_sequence=>20
+,p_plug_display_point=>'SUB_REGIONS'
+,p_query_type=>'TABLE'
+,p_query_table=>'VOCS'
+,p_query_where=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'device_id = :P1_DEVICE_ID',
+'and toluene > 3000'))
+,p_query_order_by=>'CREATED DESC'
+,p_include_rowid_column=>false
+,p_plug_source_type=>'NATIVE_IR'
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_prn_content_disposition=>'ATTACHMENT'
+,p_prn_units=>'MILLIMETERS'
+,p_prn_paper_size=>'A4'
+,p_prn_width=>297
+,p_prn_height=>210
+,p_prn_orientation=>'HORIZONTAL'
+,p_prn_page_header=>'Incidents Report'
+,p_prn_page_header_font_color=>'#000000'
+,p_prn_page_header_font_family=>'Helvetica'
+,p_prn_page_header_font_weight=>'normal'
+,p_prn_page_header_font_size=>'12'
+,p_prn_page_footer_font_color=>'#000000'
+,p_prn_page_footer_font_family=>'Helvetica'
+,p_prn_page_footer_font_weight=>'normal'
+,p_prn_page_footer_font_size=>'12'
+,p_prn_header_bg_color=>'#EEEEEE'
+,p_prn_header_font_color=>'#000000'
+,p_prn_header_font_family=>'Helvetica'
+,p_prn_header_font_weight=>'bold'
+,p_prn_header_font_size=>'10'
+,p_prn_body_bg_color=>'#FFFFFF'
+,p_prn_body_font_color=>'#000000'
+,p_prn_body_font_family=>'Helvetica'
+,p_prn_body_font_weight=>'normal'
+,p_prn_body_font_size=>'10'
+,p_prn_border_width=>.5
+,p_prn_page_header_alignment=>'CENTER'
+,p_prn_page_footer_alignment=>'CENTER'
+,p_prn_border_color=>'#666666'
+);
+wwv_flow_api.create_worksheet(
+ p_id=>wwv_flow_api.id(8144542348910234)
+,p_max_row_count=>'1000000'
+,p_no_data_found_message=>'no metrics found'
+,p_pagination_type=>'ROWS_X_TO_Y'
+,p_pagination_display_pos=>'BOTTOM_RIGHT'
+,p_show_display_row_count=>'Y'
+,p_report_list_mode=>'TABS'
+,p_lazy_loading=>false
+,p_show_detail_link=>'N'
+,p_show_notify=>'Y'
+,p_download_formats=>'CSV:HTML:XLSX:PDF'
+,p_enable_mail_download=>'Y'
+,p_owner=>'A00354851@TEC.MX'
+,p_internal_uid=>8144542348910234
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(8144608343910235)
+,p_db_column_name=>'ID'
+,p_display_order=>10
+,p_column_identifier=>'A'
+,p_column_label=>'Id'
+,p_column_type=>'NUMBER'
+,p_column_alignment=>'RIGHT'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(8144761879910236)
+,p_db_column_name=>'DEVICE_ID'
+,p_display_order=>20
+,p_column_identifier=>'B'
+,p_column_label=>'Device ID'
+,p_column_type=>'STRING'
+,p_column_alignment=>'CENTER'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(8144866720910237)
+,p_db_column_name=>'DEVICE_NAME'
+,p_display_order=>30
+,p_column_identifier=>'C'
+,p_column_label=>'Device Name'
+,p_column_type=>'STRING'
+,p_column_alignment=>'CENTER'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(8144903789910238)
+,p_db_column_name=>'TEMPERATURE'
+,p_display_order=>40
+,p_column_identifier=>'D'
+,p_column_label=>'Temperature'
+,p_column_html_expression=>unistr('#TEMPERATURE# \00B0C')
+,p_column_type=>'NUMBER'
+,p_column_alignment=>'RIGHT'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(8145082295910239)
+,p_db_column_name=>'HUMIDITY'
+,p_display_order=>50
+,p_column_identifier=>'E'
+,p_column_label=>'Humidity'
+,p_column_html_expression=>'#HUMIDITY# %'
+,p_column_type=>'NUMBER'
+,p_column_alignment=>'RIGHT'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(8145103399910240)
+,p_db_column_name=>'TOLUENE'
+,p_display_order=>60
+,p_column_identifier=>'F'
+,p_column_label=>'Toluene'
+,p_column_html_expression=>'#TOLUENE# ppm'
+,p_column_type=>'NUMBER'
+,p_column_alignment=>'RIGHT'
+,p_format_mask=>'999G999G999G999G999G999G990'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(8145236320910241)
+,p_db_column_name=>'CREATED'
+,p_display_order=>70
+,p_column_identifier=>'G'
+,p_column_label=>'Created'
+,p_column_type=>'DATE'
+,p_column_alignment=>'CENTER'
+,p_format_mask=>'DD-MON-YYYY HH24:MI:SS'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_rpt(
+ p_id=>wwv_flow_api.id(9582013048577855)
+,p_application_user=>'APXWS_DEFAULT'
+,p_report_seq=>10
+,p_report_alias=>'95821'
+,p_status=>'PUBLIC'
+,p_is_default=>'Y'
+,p_report_columns=>'CREATED:DEVICE_ID:DEVICE_NAME:TEMPERATURE:HUMIDITY:TOLUENE:'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(8141570706910204)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(8090224919866051)
+,p_button_name=>'REFRESH'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#:t-Button--large:t-Button--hoverIconSpin'
+,p_button_template_id=>wwv_flow_api.id(8044129398865852)
+,p_button_image_alt=>'Refresh'
+,p_button_position=>'NEXT'
+,p_icon_css_classes=>'fa-refresh'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(8142406899910213)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(8080486739866044)
+,p_button_name=>'RESET_TEMP'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#:t-Button--large'
+,p_button_template_id=>wwv_flow_api.id(8044129398865852)
+,p_button_image_alt=>'Reset'
+,p_button_position=>'NEXT'
+,p_warn_on_unsaved_changes=>null
+,p_icon_css_classes=>'fa-refresh'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(8143213634910221)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(8083149806866047)
+,p_button_name=>'RESET_HUM'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#:t-Button--large'
+,p_button_template_id=>wwv_flow_api.id(8044129398865852)
+,p_button_image_alt=>'Reset'
+,p_button_position=>'NEXT'
+,p_warn_on_unsaved_changes=>null
+,p_icon_css_classes=>'fa-refresh'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(8143813411910227)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(8085882090866048)
+,p_button_name=>'RESET_TOL'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(8044129398865852)
+,p_button_image_alt=>'Reset '
+,p_button_position=>'NEXT'
+,p_warn_on_unsaved_changes=>null
+,p_icon_css_classes=>'fa-refresh'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(8141486276910203)
+,p_name=>'P1_DEVICE_ID'
+,p_item_sequence=>70
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(8142556139910214)
+,p_name=>'Reset Zoom'
+,p_event_sequence=>10
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_api.id(8142406899910213)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'click'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(8142659733910215)
+,p_event_id=>wwv_flow_api.id(8142556139910214)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'// Retrieve current xAxis settings',
+'var l_xAxis = apex.region( "line_chart" ).widget().ojChart( ''option'', ''xAxis'' );',
+'',
+'// Reset viewport',
+'apex.region( "line_chart" ).widget().ojChart({',
+'    ',
+'    // Clear viewportMin and viewportMax settings on xAxis',
+'    xAxis: $.extend( l_xAxis, { viewportMin: null, viewportMax: null } )',
+'',
+'});',
+''))
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(8142775861910216)
+,p_event_id=>wwv_flow_api.id(8142556139910214)
+,p_event_result=>'TRUE'
+,p_action_sequence=>20
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'REGION'
+,p_affected_region_id=>wwv_flow_api.id(8080486739866044)
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(8143348735910222)
+,p_name=>'Reset Zoom Hum'
+,p_event_sequence=>20
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_api.id(8143213634910221)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'click'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(8143460595910223)
+,p_event_id=>wwv_flow_api.id(8143348735910222)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'// Retrieve current xAxis settings',
+'var l_xAxis = apex.region( "hum_chart" ).widget().ojChart( ''option'', ''xAxis'' );',
+'',
+'// Reset viewport',
+'apex.region( "hum_chart" ).widget().ojChart({',
+'    ',
+'    // Clear viewportMin and viewportMax settings on xAxis',
+'    xAxis: $.extend( l_xAxis, { viewportMin: null, viewportMax: null } )',
+'',
+'});',
+''))
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(8143721554910226)
+,p_event_id=>wwv_flow_api.id(8143348735910222)
+,p_event_result=>'TRUE'
+,p_action_sequence=>20
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'REGION'
+,p_affected_region_id=>wwv_flow_api.id(8083149806866047)
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(8143988003910228)
+,p_name=>'Reset Zoom Tol'
+,p_event_sequence=>30
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_api.id(8143813411910227)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'click'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(8144000192910229)
+,p_event_id=>wwv_flow_api.id(8143988003910228)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'// Retrieve current xAxis settings',
+'var l_xAxis = apex.region( "tol_chart" ).widget().ojChart( ''option'', ''xAxis'' );',
+'',
+'// Reset viewport',
+'apex.region( "tol_chart" ).widget().ojChart({',
+'    ',
+'    // Clear viewportMin and viewportMax settings on xAxis',
+'    xAxis: $.extend( l_xAxis, { viewportMin: null, viewportMax: null } )',
+'',
+'});',
+''))
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(8144198493910230)
+,p_event_id=>wwv_flow_api.id(8143988003910228)
+,p_event_result=>'TRUE'
+,p_action_sequence=>20
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'REGION'
+,p_affected_region_id=>wwv_flow_api.id(8085882090866048)
+);
+wwv_flow_api.component_end;
+end;
+/
