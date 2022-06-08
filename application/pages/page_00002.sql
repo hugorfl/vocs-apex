@@ -14,14 +14,14 @@ wwv_flow_api.component_begin (
 wwv_flow_api.create_page(
  p_id=>2
 ,p_user_interface_id=>wwv_flow_api.id(8069507814865894)
-,p_name=>'Home'
-,p_alias=>'HOME1'
-,p_step_title=>'Home'
+,p_name=>'Dispositivos'
+,p_alias=>'DISPOSITIVOS'
+,p_step_title=>'Dispositivos'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
 ,p_protection_level=>'C'
 ,p_last_updated_by=>'A00354851@TEC.MX'
-,p_last_upd_yyyymmddhh24miss=>'20220527012635'
+,p_last_upd_yyyymmddhh24miss=>'20220607212320'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(8091626890866075)
@@ -72,10 +72,9 @@ wwv_flow_api.create_card(
 ,p_sub_title_column_name=>'DEVICE_NAME'
 ,p_body_adv_formatting=>true
 ,p_body_html_expr=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'',
-'Tolueno: &TOLUENE. ppm<br/>',
-unistr('Temperatura: &TEMPERATURE.\00B0C<br/> '),
-'Humedad: &HUMIDITY.%'))
+'Toluene: &TOLUENE. ppm<br/>',
+unistr('Temperature: &TEMPERATURE.\00B0C<br/> '),
+'Humidity: &HUMIDITY.%'))
 ,p_second_body_adv_formatting=>false
 ,p_icon_source_type=>'INITIALS'
 ,p_icon_class_column_name=>'DEVICE_NAME'

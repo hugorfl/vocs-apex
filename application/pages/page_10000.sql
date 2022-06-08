@@ -28,7 +28,7 @@ wwv_flow_api.create_page(
 'By selecting one of the available settings, administrators can potentially change how the application is displayed and/or features available to the end users.</p>',
 '<p>Access to this page should be limited to Administrators only.</p>'))
 ,p_last_updated_by=>'A00354851@TEC.MX'
-,p_last_upd_yyyymmddhh24miss=>'20220331052056'
+,p_last_upd_yyyymmddhh24miss=>'20220607211323'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(8131654710866504)
@@ -41,6 +41,7 @@ wwv_flow_api.create_page_plug(
 ,p_menu_id=>wwv_flow_api.id(7881408917865687)
 ,p_plug_source_type=>'NATIVE_BREADCRUMB'
 ,p_menu_template_id=>wwv_flow_api.id(8046445183865854)
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(8133319929866508)

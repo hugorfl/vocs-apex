@@ -22,11 +22,11 @@ wwv_flow_api.create_page(
 ,p_page_template_options=>'#DEFAULT#'
 ,p_protection_level=>'C'
 ,p_last_updated_by=>'A00354851@TEC.MX'
-,p_last_upd_yyyymmddhh24miss=>'20220607034238'
+,p_last_upd_yyyymmddhh24miss=>'20220607234110'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(8080486739866044)
-,p_plug_name=>'Temperatura'
+,p_plug_name=>'Temperature'
 ,p_region_name=>'line_chart'
 ,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
 ,p_plug_template=>wwv_flow_api.id(7972238683865800)
@@ -89,7 +89,7 @@ wwv_flow_api.create_jet_chart_axis(
 ,p_chart_id=>wwv_flow_api.id(8080817149866045)
 ,p_axis=>'x'
 ,p_is_rendered=>'on'
-,p_title=>'Fecha'
+,p_title=>'Date'
 ,p_format_type=>'datetime-short'
 ,p_format_scaling=>'auto'
 ,p_scaling=>'linear'
@@ -117,7 +117,7 @@ wwv_flow_api.create_jet_chart_axis(
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(8083149806866047)
-,p_plug_name=>'Humedad'
+,p_plug_name=>'Humidity'
 ,p_region_name=>'hum_chart'
 ,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
 ,p_plug_template=>wwv_flow_api.id(7972238683865800)
@@ -180,7 +180,7 @@ wwv_flow_api.create_jet_chart_axis(
 ,p_chart_id=>wwv_flow_api.id(8083597299866047)
 ,p_axis=>'x'
 ,p_is_rendered=>'on'
-,p_title=>'Fecha'
+,p_title=>'Date'
 ,p_format_type=>'datetime-short'
 ,p_format_scaling=>'auto'
 ,p_scaling=>'linear'
@@ -208,7 +208,7 @@ wwv_flow_api.create_jet_chart_axis(
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(8085882090866048)
-,p_plug_name=>'Tolueno'
+,p_plug_name=>'Toluene'
 ,p_region_name=>'tol_chart'
 ,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
 ,p_plug_template=>wwv_flow_api.id(7972238683865800)
@@ -247,7 +247,7 @@ wwv_flow_api.create_jet_chart_series(
  p_id=>wwv_flow_api.id(8087942313866049)
 ,p_chart_id=>wwv_flow_api.id(8086283615866048)
 ,p_seq=>10
-,p_name=>'Tolueno'
+,p_name=>'Toluene'
 ,p_data_source_type=>'SQL'
 ,p_data_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select ',
@@ -270,7 +270,7 @@ wwv_flow_api.create_jet_chart_axis(
 ,p_chart_id=>wwv_flow_api.id(8086283615866048)
 ,p_axis=>'x'
 ,p_is_rendered=>'on'
-,p_title=>'Fecha'
+,p_title=>'Date'
 ,p_format_type=>'datetime-short'
 ,p_format_scaling=>'auto'
 ,p_scaling=>'linear'
@@ -298,7 +298,7 @@ wwv_flow_api.create_jet_chart_axis(
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(8090224919866051)
-,p_plug_name=>'T-AirSentinel'
+,p_plug_name=>'Device / &P1_DEVICE_ID.'
 ,p_icon_css_classes=>'app-icon'
 ,p_region_template_options=>'#DEFAULT#'
 ,p_plug_template=>wwv_flow_api.id(7950141157865789)
@@ -377,9 +377,15 @@ wwv_flow_api.create_worksheet(
 ,p_report_list_mode=>'TABS'
 ,p_lazy_loading=>false
 ,p_show_detail_link=>'N'
-,p_show_notify=>'Y'
+,p_show_control_break=>'N'
+,p_show_computation=>'N'
+,p_show_aggregate=>'N'
+,p_show_chart=>'N'
+,p_show_group_by=>'N'
+,p_show_pivot=>'N'
+,p_show_help=>'N'
 ,p_download_formats=>'CSV:HTML:XLSX:PDF'
-,p_enable_mail_download=>'Y'
+,p_enable_mail_download=>'N'
 ,p_owner=>'A00354851@TEC.MX'
 ,p_internal_uid=>8141701063910206
 );
@@ -463,13 +469,13 @@ wwv_flow_api.create_worksheet_rpt(
 ,p_report_columns=>'CREATED:DEVICE_ID:DEVICE_NAME:HUMIDITY:TEMPERATURE:TOLUENE:'
 );
 wwv_flow_api.create_worksheet_condition(
- p_id=>wwv_flow_api.id(9705067506069796)
+ p_id=>wwv_flow_api.id(9726765358058665)
 ,p_report_id=>wwv_flow_api.id(9490591046133458)
 ,p_condition_type=>'HIGHLIGHT'
 ,p_allow_delete=>'Y'
 ,p_column_name=>'TOLUENE'
 ,p_operator=>'>'
-,p_expr=>'5000'
+,p_expr=>'299'
 ,p_condition_sql=>' (case when ("TOLUENE" > to_number(#APXWS_EXPR#)) then #APXWS_HL_ID# end) '
 ,p_condition_display=>'#APXWS_COL_NAME# > #APXWS_EXPR_NUMBER#  '
 ,p_enabled=>'Y'
@@ -477,14 +483,14 @@ wwv_flow_api.create_worksheet_condition(
 ,p_row_bg_color=>'#ffd6d2'
 );
 wwv_flow_api.create_worksheet_condition(
- p_id=>wwv_flow_api.id(9705474347069796)
+ p_id=>wwv_flow_api.id(9727138761058665)
 ,p_report_id=>wwv_flow_api.id(9490591046133458)
 ,p_condition_type=>'HIGHLIGHT'
 ,p_allow_delete=>'Y'
 ,p_column_name=>'TOLUENE'
 ,p_operator=>'between'
-,p_expr=>'3000'
-,p_expr2=>'99999'
+,p_expr=>'100'
+,p_expr2=>'298'
 ,p_condition_sql=>' (case when ("TOLUENE" between to_number(#APXWS_EXPR#) and to_number(#APXWS_EXPR2#)) then #APXWS_HL_ID# end) '
 ,p_condition_display=>'#APXWS_COL_NAME# #APXWS_OP_NAME# #APXWS_EXPR_NUMBER# #APXWS_AND# #APXWS_EXPR2_NUMBER#'
 ,p_enabled=>'Y'
@@ -504,7 +510,7 @@ wwv_flow_api.create_page_plug(
 ,p_query_table=>'VOCS'
 ,p_query_where=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'device_id = :P1_DEVICE_ID',
-'and toluene > 3000'))
+'and toluene > 100'))
 ,p_query_order_by=>'CREATED DESC'
 ,p_include_rowid_column=>false
 ,p_plug_source_type=>'NATIVE_IR'
@@ -549,9 +555,15 @@ wwv_flow_api.create_worksheet(
 ,p_report_list_mode=>'TABS'
 ,p_lazy_loading=>false
 ,p_show_detail_link=>'N'
-,p_show_notify=>'Y'
+,p_show_control_break=>'N'
+,p_show_computation=>'N'
+,p_show_aggregate=>'N'
+,p_show_chart=>'N'
+,p_show_group_by=>'N'
+,p_show_pivot=>'N'
+,p_show_help=>'N'
 ,p_download_formats=>'CSV:HTML:XLSX:PDF'
-,p_enable_mail_download=>'Y'
+,p_enable_mail_download=>'N'
 ,p_owner=>'A00354851@TEC.MX'
 ,p_internal_uid=>8144542348910234
 );
